@@ -1,10 +1,14 @@
-# REACT + VITE
-## Carpetas y archivos
+# REACT + VITE 💻
+## Carpetas y archivos 📁
+* **/carpeta-principal** : Es la que contiene todas las demas carpetas . Aqui es donde instalamos **node_modules** (escriba **npm install** en la terminal 😋)
 * **/public** 
 * **/src** : aqui va la app.
   * **/assets**: aqui va todo el contenido estatico como imagenes , videos o audios.
   * **main.jsx** : punto de partida de la app donde se renderiza la aplicacion.
   * **App.jsx** : es un componente(funciones que retornan una estructura html) de la app que contiene un funcional component.
+  > **Que es JSX?** 
+  >
+  > Es una extension de sintaxis de React la cual combina Html y JS permitiendo utilizar codigo Html junto a codigo Javascript para poder crear componentes dinamicos y reutilizables.
 * **.gitignore** : Es el archivo que Git(nuestro controlador de versiones) va analizar para saber que cosas no se debe subir a nuestro repositorio (github ,gitlab ,etc)
 * **index.html** : Es el punto de entrada de la app.
 * **package.json** : aqui se encuentra la configuacion de la app en formato json.
@@ -24,3 +28,6 @@
   * **devDependecies** : son las dependecias que nos sirven a la hora de desarrollar a la app(o sea no estan al finalizar el proyecto).
 
 * **vite.config.js** : Aqui se encuentra la configuracion de **Vite**.
+
+## Ejecucion 
+  Para ejecutar el programa escriba en la terminal **npm run dev** y asi poder abrir la app en un puerto local (presione Ctrl+Click encima de **http://localhost:...** )

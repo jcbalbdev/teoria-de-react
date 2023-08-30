@@ -1,0 +1,10 @@
+.pokemon{
+  padding: 4px;
+  background-color: tomato;
+  border-radius: 16px;
+  box-shadow:4px 4px 2px #202020;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}

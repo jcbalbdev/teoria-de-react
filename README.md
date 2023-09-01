@@ -4,6 +4,8 @@
 * **/public** : Es la carpeta donde se guardas las imagenes publicas (estas imagenes pueden ser vistas por el usuario si entra a ver el codigo)
 * **/src** : aqui va la app.
   * **/assets**: aqui va todo el contenido estatico como imagenes , videos o audios.
+  * **/components** : en esta carpeta suelen ponerse los componentes que hemos creado.
+  * **/styles** : en esta carpeta suelen ponerse los estilos. 
   * **main.jsx** : punto de partida de la app donde se renderiza la aplicacion.
   * **App.jsx** : es un componente(funciones que retornan una estructura html) de la app que contiene un funcional component.
   > **Que es JSX?** 
@@ -41,7 +43,7 @@
   
   > **Nota**
   >
-  > Todo componente retorna solo una etiqueta **HTML**, por eso si queremos mostrar mas de una etiqueta debemos envolverlas en un **fragmet** ( <> </> ).
+  > Todo componente retorna solo una etiqueta **HTML**, por eso si queremos mostrar mas de una etiqueta debemos envolverlas en un **fragmet** ( **<> </>** ).
 
   #### Modo N°1
   > En mi componente
@@ -100,6 +102,14 @@
 
 ## Estilos
   Para poner un estilo tanto para el **main.jsx** o un **componente**, tan solo debemos importar el archivo css dentro de **main.jsx** o de un **componente**.
+  ### Clases 
+  Para poner clases dentro de una etiqueta **Html** en **React** debemos poner el atributo **className** en vez del atributo **class** ya que este ultimo nos da un error en JSX.
+  ```javascript
+    <div className="pokemon">
+      <h3>Nombre : {pokemon}</h3>
+      <p>Tipo : {tipo}</p>
+    </div>
+  ```
 
 ## Props (propiedades)
   - Son variables que se pasan a un componente padre para ser usadas por él y sus hijos.
@@ -142,3 +152,187 @@ Pokemones.defaultProps = {
 
 ## Eventos
   Son mecanismos con los cuales un componente puede reaccionar a la interaccion que hace el usuario con la interfaz.
+  > **Nota** ⚠
+  >
+  > En estos ejemplos solo modificaremos el valor en consola pero no estamos cambiando la interfaz. Para cambiar la interfaz con **React** debemos utilizar **Hooks**
+
+  ### 1. Eventos con un solo argumento
+  * **Primera Forma**
+    ```javascript
+    /* Manejador de eventos */
+      function HandleClick (event) {
+        console.log(event)
+      }
+      /* button */
+      const Button = () =>{
+        return <button onClick={event => HandleClick(event)}>
+          Saludame
+          </button>
+      }
+      /* Componente */
+      export const Pokemones = ({pokemon,tipo}) =>{
+        return <>
+          <div className="pokemon">
+          <h3>Nombre : {pokemon}</h3>
+          <p>Tipo : {tipo}</p>
+          </div>
+        </>
+      }
+    ``` 
+    * **Segunda forma**
+    ```javascript
+    /* Manejador de eventos */
+      function HandleClick (event) {
+        console.log(event)
+      }
+      /* button */
+      const Button = () =>{
+        return <button onClick={event => HandleClick(event)}>
+          Saludame
+          </button>
+      }
+      /* Componente */
+      export const Pokemones = ({pokemon,tipo}) =>{
+        return <>
+          <div className="pokemon">
+          <h3>Nombre : {pokemon}</h3>
+          <p>Tipo : {tipo}</p>
+          </div>
+        </>
+      }
+    ```     
+  ### 2. Eventos con dos o mas argumentos
+  ```javascript
+    import  PropTypes  from "prop-types"
+    /* Manejador de eventos */
+    function handleClick (name,lastName) {
+      alert(`Hola ${name} ${lastName}`)
+    }
+    /* button */
+    const Button = ({name,lastName}) =>{
+      return <button onClick={() => handleClick(name,   lastName)}>
+        Saludame
+        </button>
+    }
+    /* Componente */
+    export const Persona = ({nombre,apellido})=>{
+      return <>
+        <h4>Informacion de la persona</h4>
+        <p>nombre : {nombre}</p>
+        <p>apellido : {apellido}</p>
+        <Button name={nombre} lastName={apellido} ></Button>
+      </>
+    }
+    /* PropTypes */
+    Button.propTypes ={
+      name:PropTypes.string ,
+      lastName:PropTypes.string
+    }
+
+
+    Persona.propTypes ={
+      nombre : PropTypes.string.isRequired,
+      apellido : PropTypes.string.isRequired
+    }
+  ```
+
+
+
+## Hooks
+  Es una **funcion especial** que nos permite utilizar una funcion de React en un componente tipo funcion. Nos sirven para poder **manejar (modificar) el estado y otras caracterisitcas** de React sin la necesidad de utilizar componentes de tipo clase.
+
+  > **Nota**
+  >
+  > **Que es el estado en React ?**
+  > Es un objeto que contiene datos y representa la informacion que una interfaz de usuario necesita para poder renderizarse (representarse de manera grafica) y funcionar correctamente. Es mutable y contiene todos los datos que necesita un componente para funcionar de manera correcta y mutar si es que lo necesita. 
+  
+  * ### Hooks de React
+    #### 1. useState()
+    * Para utilizar useState debemos importar el Hook de react de la libreria de react
+    > import { useState } from 'react'
+    * Dentro del componente de funcion debemos declarar una constante que contiene una variable (**contador**) y un metodo (**setContador**) que nos permite cambiar el valor de dicha variable, dicha constante debe ser igual a la funcion, metodo o hook llamado **useState** que contendra el valor inicial de **contador**.
+    > const [contador,setContador] = useState(numero)
+    
+    ```javascript
+    import PropTypes from 'prop-types'
+    import { useState } from 'react'
+
+
+
+    /* Componente */
+    export const Contador = ({numero}) => {
+      /* useState (Hook de React) */
+      const [contador,setContador] = useState(numero)
+      /* haddle (manejador de eventos) */
+      function handleClickUp() {
+        setContador(Number(contador) + 1)
+      }
+      function handleClickDown() {
+        setContador(Number(contador) - 1)
+      }
+      return <>
+        <div>
+          <p> Contador : {contador} </p>
+          <button onClick={handleClickUp}>Aumenta</button>
+          < onClick={handleClickDown}>Disminuye</   button>
+        </div>
+      </>
+    }
+
+    Contador.propTypes = {
+      numero : PropTypes.number.isRequired
+    }
+    ```
+  * ### Custom Hooks (Hooks personalizados)
+
+
+## Metodo map y condicional ternario
+  * El metodo Map nos permite iterar sobre un arreglo o una coleccion para poder renderizar cada uno de los elementos del mismo.
+  * El metodo Map junto al condicional ternario nos serviria para crear componentes mas pequeños de manera mucho mas facil.La creacion de componentes cada vez mas pequeños se le llama **Atomic Design**.
+  > **Que es Atomic Design?**
+  > Es un enfoque de diseño de las interfaces de usuario que se basa en la creacion y organizacion de componentes reutilizables. La idea en la cual se basa es de crear componentes muy pequeños o atomicos (indivisibles), luego hacer componentes cada vez mas grandes y asi poder crear una interfaz desde su parte mas pequeña hasta la mas grande tratando de reutilizar lo mas posible los componentes minimos.
+
+  ```javascript
+  import PropTypes from 'prop-types'
+  import { useState } from 'react'
+
+  const ListaItems = ({nombre,value}) => {
+    return <li>{nombre}
+              {value?'🟢':'🔴'}
+    </li>
+  }
+
+  export const MostrarItems = () => {
+    /* En AstroJS esta parte seria el JSON en la carpeta  config */
+    let Lista = [
+      { nombre:"item dentro del inventario",value:true },
+      { nombre:"item fuera del inventario", value:false },
+    ]
+    /* este handle agrega un nuevo valor al arreglo */
+    function handleAddTask(){
+      /* agregamos el arreglo con un spread operator */
+      setArreglo([...arreglo,{ nombre:"nuevo item", value:false }])
+    }
+
+    const [arreglo,setArreglo] = useState(Lista)
+
+    return <>
+      <ol>
+        {
+          /* esto tambien es lo mismo que en AstroJS a la   hora de crear componentes */
+        arreglo.map((item)=>
+          <ListaItems key={item.nombre} nombre={item. nombre} value={item.value}></ListaItems>
+        )
+        }
+      </ol>
+
+      <button onClick={handleAddTask}>agregar item</button>
+    </>
+  }
+
+  ListaItems.propTypes = {
+    nombre :PropTypes.string.isRequired ,
+    value : PropTypes.bool.isRequired  
+  }
+  ```
+  

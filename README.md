@@ -1,6 +1,6 @@
 # REACT + VITE 💻
 ## INDICE🚀 
-1. [Componentes](/Componentes/)
+1. [Componentes](#componentes)
 ## Carpetas y archivos 📁
 * **/carpeta-principal** : Es la que contiene todas las demas carpetas . Aqui es donde instalamos **node_modules** (escriba **npm install** en la terminal 😋)
 * **/public** : Es la carpeta donde se guardas las imagenes publicas (estas imagenes pueden ser vistas por el usuario si entra a ver el codigo)

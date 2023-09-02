@@ -8,6 +8,7 @@ import { Pokemones } from './componentes/Pokemons.jsx'
 import { Persona } from './componentes/EventoSaludo.jsx'
 import { Contador } from './componentes/Contador.jsx'
 import { MostrarItems } from './componentes/ListaItems.jsx'
+import { UserApp } from './componentes/UserApp.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Pokemones pokemon="pokemon inicial"/> {/* aqui no se esta pasando la prop tipo por ende se pondra la variable definida por defecto */}
     <Persona/>
     <Contador numero="2"/>
-    <MostrarItems></MostrarItems>  
+    <MostrarItems></MostrarItems> 
+    <UserApp></UserApp>
   </React.StrictMode>,
 )
